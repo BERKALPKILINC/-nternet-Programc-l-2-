@@ -1,0 +1,62 @@
+import { ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+
+import { Urun } from 'src/app/models/Urun';
+import { ApiService } from 'src/app/services/api.service';
+import { MyAlertService } from 'src/app/services/myAlert.service';
+import { ConfirmDialogComponent } from '../dialogs/confirm-dialog/confirm-dialog.component';
+import { GorselyukleDialogComponent } from '../dialogs/gorselyukle-dialog/gorselyukle-dialog.component';
+import { UrunDialogComponent } from '../dialogs/urun-dialog/urun-dialog.component';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+})
+export class HomeComponent implements OnInit {
+  dialogRef: MatDialogRef<UrunDialogComponent>;
+  confirmdialogRef: MatDialogRef<ConfirmDialogComponent>;
+  gorselDialogRef: MatDialogRef<GorselyukleDialogComponent>;
+  urunler: Urun[];
+  dataSource: any;
+  displayedColumns = [
+    'UrunFoto',
+
+    'UrunAdi',
+
+    'UrunFiyat',
+
+  ];
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(
+    public alert: MyAlertService,
+    public matDialog: MatDialog,
+    public apiServis: ApiService
+  ) {}
+
+  ngOnInit() {
+    this.UrunListele();
+  }
+
+  UrunListele() {
+    this.apiServis.UrunListe().subscribe((d: Urun[]) => {
+      this.urunler = d;
+      this.dataSource = new MatTableDataSource(this.urunler);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
+  UrunFiltrele(e) {
+    var deger = e.target.value;
+    this.dataSource.filter = deger.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+}

@@ -1,0 +1,95 @@
+<div class="container">
+  <h1>Siparişler</h1>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Arama" (keyup)="UrunFiltrele($event)" />
+  </mat-form-field>
+  <p></p>
+
+  <button mat-mini-fab color="primary" matTooltip="Ürün Ekle" (click)="Ekle()">
+    <mat-icon aria-label="label">add</mat-icon>
+  </button>
+
+  <p>&nbsp;</p>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z10" matSort>
+
+    <ng-container matColumnDef="SiparisId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Sipariş SiparisId
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{ kayit.SiparisId }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="SiparisUyeId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Üye Id
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{ kayit.SiparisUyeId }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="SiparisUyeAdi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Üye Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{ kayit.SiparisUyeAdi }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="SiparisUrunId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Ürün Id
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{ kayit.SiparisUrunId }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="SiparisUrunAdi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Ürün Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{ kayit.SiparisUrunAdi }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="SiparisUrunFiyat">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Ürün Fiyatı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{ kayit.SiparisUrunFiyat }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="SiparisTarih">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Sipariş Tarihi
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{ kayit.SiparisTarih }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="SiparisAdres">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Sipariş Adresi
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{ kayit.SiparisAdres }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+        <button
+          mat-icon-button
+          matTooltip="Detay"
+          [routerLink]="['/admin/siparisliste', kayit.SiparisId]"
+        >
+          <mat-icon aria-label="label" color="primary">article</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Düzenle" (click)="Duzenle(kayit)">
+          <mat-icon aria-label="label" color="accent">edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Sil" (click)="Sil(kayit)">
+          <mat-icon aria-label="label" color="warn">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [pageSizeOptions]="[10, 15, 25]"
+    showFirstLastButtons
+    class="mat-elevation-z5"
+  >
+  </mat-paginator>
+</div>

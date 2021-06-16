@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="berkalpModelStoreContainer" CdmEntityContainer="berkalpEntities">
+    <EntitySetMapping Name="Kategori">
+      <EntityTypeMapping TypeName="berkalpModel.Kategori">
+        <MappingFragment StoreEntitySet="Kategori">
+          <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+          <ScalarProperty Name="KategoriAdi" ColumnName="KategoriAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marka">
+      <EntityTypeMapping TypeName="berkalpModel.Marka">
+        <MappingFragment StoreEntitySet="Marka">
+          <ScalarProperty Name="MarkaId" ColumnName="MarkaId" />
+          <ScalarProperty Name="MarkaAdi" ColumnName="MarkaAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Siparis">
+      <EntityTypeMapping TypeName="berkalpModel.Siparis">
+        <MappingFragment StoreEntitySet="Siparis">
+          <ScalarProperty Name="SiparisId" ColumnName="SiparisId" />
+          <ScalarProperty Name="SiparisKod" ColumnName="SiparisKod" />
+          <ScalarProperty Name="SiparisTarih" ColumnName="SiparisTarih" />
+          <ScalarProperty Name="SiparisUrunId" ColumnName="SiparisUrunId" />
+          <ScalarProperty Name="SiparisUyeId" ColumnName="SiparisUyeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Urun">
+      <EntityTypeMapping TypeName="berkalpModel.Urun">
+        <MappingFragment StoreEntitySet="Urun">
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+          <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+          <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+          <ScalarProperty Name="UrunAdet" ColumnName="UrunAdet" />
+          <ScalarProperty Name="UrunKodu" ColumnName="UrunKodu" />
+          <ScalarProperty Name="UrunFoto" ColumnName="UrunFoto" />
+          <ScalarProperty Name="UrunKategoriId" ColumnName="UrunKategoriId" />
+          <ScalarProperty Name="UrunMarkaId" ColumnName="UrunMarkaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uye">
+      <EntityTypeMapping TypeName="berkalpModel.Uye">
+        <MappingFragment StoreEntitySet="Uye">
+          <ScalarProperty Name="UyeId" ColumnName="UyeId" />
+          <ScalarProperty Name="UyeAdi" ColumnName="UyeAdi" />
+          <ScalarProperty Name="UyeSoyadi" ColumnName="UyeSoyadi" />
+          <ScalarProperty Name="UyeKA" ColumnName="UyeKA" />
+          <ScalarProperty Name="UyeKS" ColumnName="UyeKS" />
+          <ScalarProperty Name="UyeTel" ColumnName="UyeTel" />
+          <ScalarProperty Name="UyeMail" ColumnName="UyeMail" />
+          <ScalarProperty Name="UyeAdres" ColumnName="UyeAdres" />
+          <ScalarProperty Name="UyeYetki" ColumnName="UyeYetki" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

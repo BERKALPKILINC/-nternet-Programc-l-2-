@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="berkalpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="KategoriId" />
+    </Key>
+    <Property Name="KategoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Marka">
+    <Key>
+      <PropertyRef Name="MarkaId" />
+    </Key>
+    <Property Name="MarkaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MarkaAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Siparis">
+    <Key>
+      <PropertyRef Name="SiparisId" />
+    </Key>
+    <Property Name="SiparisId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiparisKod" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SiparisTarih" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SiparisUrunId" Type="int" Nullable="false" />
+    <Property Name="SiparisUyeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Urun">
+    <Key>
+      <PropertyRef Name="UrunId" />
+    </Key>
+    <Property Name="UrunId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunAdi" Type="text" Nullable="false" />
+    <Property Name="UrunFiyat" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="UrunAdet" Type="int" Nullable="false" />
+    <Property Name="UrunKodu" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="UrunFoto" Type="text" Nullable="false" />
+    <Property Name="UrunKategoriId" Type="int" Nullable="false" />
+    <Property Name="UrunMarkaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Uye">
+    <Key>
+      <PropertyRef Name="UyeId" />
+    </Key>
+    <Property Name="UyeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UyeAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UyeSoyadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UyeKA" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UyeKS" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UyeTel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UyeMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UyeAdres" Type="text" Nullable="false" />
+    <Property Name="UyeYetki" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Siparis_ToUrun">
+    <End Role="Urun" Type="Self.Urun" Multiplicity="1" />
+    <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="SiparisUrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_ToUye">
+    <End Role="Uye" Type="Self.Uye" Multiplicity="1" />
+    <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uye">
+        <PropertyRef Name="UyeId" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="SiparisUyeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_ToKategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+    <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="Urun">
+        <PropertyRef Name="UrunKategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urun_ToMarka">
+    <End Role="Marka" Type="Self.Marka" Multiplicity="1" />
+    <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marka">
+        <PropertyRef Name="MarkaId" />
+      </Principal>
+      <Dependent Role="Urun">
+        <PropertyRef Name="UrunMarkaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="berkalpModelStoreContainer">
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Marka" EntityType="Self.Marka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Siparis" EntityType="Self.Siparis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Urun" EntityType="Self.Urun" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uye" EntityType="Self.Uye" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Siparis_ToUrun" Association="Self.FK_Siparis_ToUrun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_ToUye" Association="Self.FK_Siparis_ToUye">
+      <End Role="Uye" EntitySet="Uye" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_ToKategori" Association="Self.FK_Urun_ToKategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Urun" EntitySet="Urun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urun_ToMarka" Association="Self.FK_Urun_ToMarka">
+      <End Role="Marka" EntitySet="Marka" />
+      <End Role="Urun" EntitySet="Urun" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

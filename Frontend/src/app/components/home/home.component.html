@@ -1,0 +1,44 @@
+<div class="container">
+  <h1>Ürünler</h1>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Ara" (keyup)="UrunFiltrele($event)"/>
+  </mat-form-field>
+  <p></p>
+
+  <p>&nbsp;</p>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z10" matSort>
+
+
+  <ng-container matColumnDef="UrunFoto">
+    <mat-header-cell *matHeaderCellDef> Ürün Görsel
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit">
+      <img [src]="apiServis.siteUrl + '/Dosyalar/' + kayit.UrunFoto" style="width: 300px"/>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="UrunAdi" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Ürün Adı
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.UrunAdi}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="UrunFiyat">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Fiyat
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.UrunFiyat}} TL </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5,10, 15, 25]"
+    showFirstLastButtons
+    class="mat-elevation-z5"
+  >
+  </mat-paginator>
+</div>

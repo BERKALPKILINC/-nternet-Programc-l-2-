@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Üye Bilgisi</h1>
+
+<h3>
+    <button mat-stroked-button color="primary" (click)="Duzenle(secUye)">Düzenle</button
+    >&nbsp;
+    <button mat-stroked-button color="warn" (click)="Sil(secUye)">Sil</button>
+  </h3>
+
+  <h3><b>Üye Id : </b>{{ secUye?.UyeId }}</h3>
+  <h3><b>Üye Adı : </b>{{ secUye?.UyeAdi }}</h3>
+  <h3><b>Üye Soyadı : </b>{{ secUye?.UyeSoyadi }}</h3>
+  <h3><b>Üye Kullanıcı Adı : </b>{{ secUye?.UyeKA }}</h3>
+  <h3><b>Üye Şifre : </b>{{ secUye?.UyeKS }}</h3>
+  <h3><b>Üye Telefon : </b>{{ secUye?.UyeTel }}</h3>
+  <h3><b>Üye Mail : </b>{{ secUye?.UyeMail }}</h3>
+  <h3><b>Üye Adres : </b>{{ secUye?.UyeAdres }}</h3>
+  <h3><b>Üye Yetki : </b>{{ secUye?.UyeYetki }}</h3>
+
+  <p>&nbsp;</p>
+
+  <button mat-stroked-button color="primary" [routerLink]="['/admin/uyeler']">
+    Geri
+  </button>
+</div>
+
+
